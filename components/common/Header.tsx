@@ -29,7 +29,7 @@ const Header = () => {
 
   useEffect(() => {
     const activeSlug = navItems.find((item) => item.link === pathName);
-    if (activeSlug) setActive(activeSlug.name);
+    setActive(activeSlug ? activeSlug.name : "");
   }, [pathName]); // eslint-disable-line
 
   return (
