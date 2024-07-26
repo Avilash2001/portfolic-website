@@ -3,31 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --var-black: 10, 10, 10;
+  --var-white: 255, 255, 255;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--var-white));
+  background: rgb(var(--var-black));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .bg-custom-gradient-text {
+    background: linear-gradient(
+      211.13deg,
+      #ffca30 10.39%,
+      #ff6580 29.98%,
+      #ff01a2 49.87%,
+      #b94ddc 66.3%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

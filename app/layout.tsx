@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Darker_Grotesque } from "next/font/google";
 import "./globals.css";
+import Sidebar from "@/components/common/Sidebar";
+import Header from "@/components/common/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Darker_Grotesque({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>
+        <div className="flex h-screen w-screen">
+          <Sidebar />
+          <div className="flex flex-col w-full h-full">
+            <Header />
+            <div className="w-[calc(100%-80px)] h-full  pr-[80px]">
+              {children}
+            </div>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
