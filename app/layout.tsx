@@ -23,9 +23,7 @@ export default function RootLayout({
           <Sidebar />
           <div className="flex flex-col w-full h-full">
             <Header />
-            <div className="w-[calc(100%-80px)] h-full  pr-[80px]">
-              {children}
-            </div>
+            <div className="w-[calc(100%-80px)] h-full">{children}</div>
           </div>
         </div>
       </body>
