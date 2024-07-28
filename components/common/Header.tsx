@@ -3,34 +3,18 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { navItems } from "@/utils/data";
+import { INavItem } from "@/types";
 
 const Header = () => {
   const pathName = usePathname();
-  const navItems = [
-    {
-      name: "About Me",
-      link: "/about",
-    },
-    {
-      name: "Skills",
-      link: "/skills",
-    },
-    {
-      name: "Projects",
-      link: "/projects",
-    },
-    {
-      name: "Contact",
-      link: "/contact",
-    },
-  ];
 
-  const [active, setActive] = useState("");
+  const [activeNav, setActiveNav] = useState<INavItem>(navItems[0]);
 
   useEffect(() => {
     const activeSlug = navItems.find((item) => item.link === pathName);
-    setActive(activeSlug ? activeSlug.name : "");
-  }, [pathName]); // eslint-disable-line
+    if (activeSlug) setActiveNav(activeSlug);
+  }, [pathName]);
 
   return (
     <div className="flex flex-row pr-[80px] pt-[40px] items-center justify-between">
@@ -43,19 +27,22 @@ const Header = () => {
       </Link>
 
       <div className="flex flex-row gap-[80px]">
-        {navItems.map((item, index) => (
-          <Link key={index} href={item.link}>
-            <p
-              className={`text-[24px] ${
-                active === item.name
-                  ? "bg-custom-gradient-text font-bold"
-                  : "font-normal "
-              }`}
-            >
-              {item.name}
-            </p>
-          </Link>
-        ))}
+        {navItems.map(
+          (navItem, index) =>
+            navItem.showInNav && (
+              <Link key={index} href={navItem.link}>
+                <p
+                  className={`text-[24px] ${
+                    activeNav.name === navItem.name
+                      ? "bg-custom-gradient-text font-bold"
+                      : "font-normal "
+                  }`}
+                >
+                  {navItem.name}
+                </p>
+              </Link>
+            )
+        )}
       </div>
     </div>
   );
